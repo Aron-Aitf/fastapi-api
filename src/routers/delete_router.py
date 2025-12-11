@@ -16,7 +16,7 @@ def delete_todo(
     session: Session = Depends(get_session),
 ):
     if not session.exec(select(Todo).where(Todo.id.in_(todo_ids))).all() == todo_ids:  # pyright: ignore[reportAttributeAccessIssue, reportOptionalMemberAccess]
-        raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, "Invalid Ids")
+        raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, "Invalid IDs")
     statement = delete(Todo).where(Todo.id.in_(todo_ids))  # pyright: ignore[reportAttributeAccessIssue, reportOptionalMemberAccess]
     session.exec(statement)
     session.commit()
