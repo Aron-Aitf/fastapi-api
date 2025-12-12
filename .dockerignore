@@ -4,7 +4,7 @@ __pycache__/
 data/
 database.db
 todo_list.json
-Makefile
+justfile
 README.md
 LICENSE
 logs/
