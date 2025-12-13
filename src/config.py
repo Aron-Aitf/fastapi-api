@@ -6,27 +6,29 @@ from tomllib import load
 
 
 class DatabaseConfig(BaseSettings):
-    database_url: PostgresDsn
-    use_local_database: bool
-    local_database_url: AnyUrl
+    database_url: PostgresDsn | None = PostgresDsn(
+        "postgresql://postgres:postgres@postgres:5432/postgres"
+    )
+    use_local_database: bool = True
+    local_database_url: AnyUrl | None = AnyUrl("sqlite:///sqlite.db")
 
 
 class DocsConfig(BaseSettings):
-    title: str
-    version: SemanticVersion
-    description: str
+    title: str = "Unnamed API"
+    version: SemanticVersion = SemanticVersion(1)
+    description: str = ""
 
 
 class AppConfig(BaseSettings):
-    debug: bool
-    timing_headers: bool
+    debug: bool = True
+    timing_headers: bool = True
 
 
 class Config(BaseSettings):
     app: AppConfig
     database: DatabaseConfig
     docs: DocsConfig
-    logging: dict[str, Any]
+    logging: dict[str, Any] | None = {}
 
 
 with open("./config.toml", "rb") as file:
