@@ -5,7 +5,7 @@ from json import load
 from sqlmodel import SQLModel, Session
 
 from database import get_session
-from models import Todo
+from models import Todo, TodoInput
 
 NUM_FAKE_TODO_TITLES = 2 ^ 8
 
@@ -27,10 +27,11 @@ def populate_fake_data(
     with open("./data/todo_list.json", "r") as file:
         todos = load(file)[:number]
 
-    todos = [Todo.model_validate(todo) for todo in todos]
-    session.add_all(todos)
+    todos = [TodoInput.model_validate(todo) for todo in todos]
+    session.add_all([
+        Todo.model_validate(todo_input.model_dump()) for todo_input in todos
+    ])
     session.commit()
-    pass
 
 
 @router.delete("/delete_all")
@@ -40,4 +41,3 @@ def clear_database(
     for table in reversed(SQLModel.metadata.sorted_tables):
         session.exec(table.delete())
     session.commit()
-# [0-9][0-9][0-9]
