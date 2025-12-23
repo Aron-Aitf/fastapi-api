@@ -27,13 +27,13 @@ datefmt = "%Y-%m-%dT%H:%M:%SZ"
 [logging.handlers.normal_file_handler]
 class = "logging.FileHandler"
 formatter = "normal_formatter"
-level = "DEBUG"
+level = "INFO"
 filename = "logs/text_log.log"
 
 [logging.handlers.json_file_handler]
 class = "logging.FileHandler"
 formatter = "json_formatter"
-level = "DEBUG"
+level = "INFO"
 filename = "logs/json_log.ndjson"
 
 [logging.loggers.""]
