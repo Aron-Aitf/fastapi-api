@@ -8,7 +8,7 @@ if config.database.use_local_database:
 
     class Todo(SQLModel, table=True):  # pyright: ignore[reportRedeclaration]
         id: int | None = Field(default=None, primary_key=True)
-        title: str = Field(nullable=False, max_length=2 ^ 8)
+        title: str = Field(nullable=False, max_length=2 ** 8)
         is_competed: bool = False
         description: str | None
         completion_date: datetime | None = None
@@ -20,7 +20,7 @@ else:
 
     class Todo(SQLModel, table=True):
         id: int | None = Field(default=None, primary_key=True)
-        title: str = Field(nullable=False, max_length=2 ^ 8)
+        title: str = Field(nullable=False, max_length=2 ** 8)
         is_competed: bool = False
         description: str | None
         completion_date: datetime | None = None
@@ -29,7 +29,7 @@ else:
 
 
 class TodoInput(SQLModel):
-    title: str
+    title: str = Field(nullable=False, max_length=2 ** 8)
     description: str | None = None
     is_competed: bool = False
     completion_date: datetime | None = None
@@ -38,7 +38,7 @@ class TodoInput(SQLModel):
 
 class TodoUpdate(SQLModel):
     old_id: int
-    title: str | None = None
+    title: str = Field(max_length=2 ** 8, default=None)
     is_competed: bool | None = None
     description: str | None = None
     completion_date: datetime | None = None

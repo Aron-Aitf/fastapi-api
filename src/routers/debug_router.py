@@ -7,7 +7,7 @@ from sqlmodel import SQLModel, Session
 from database import get_session
 from models import Todo, TodoInput
 
-NUM_FAKE_TODO_TITLES = 2 ^ 8
+NUM_FAKE_TODO_TITLES = 2 ** 8
 
 fake = Faker()
 
