@@ -36,7 +36,7 @@ async def logging_and_time_middleware(request: Request, call_next):
         response.headers["X-Process-Time"] = str(process_time)
 
     logger.info(
-        f"Response: {request.method} {request.url.path} returned status code{response.status_code} in {process_time}"
+        f"Response: {request.method} {request.url.path} returned status code {response.status_code} in {process_time}"
     )
 
     return response

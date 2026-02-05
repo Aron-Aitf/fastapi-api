@@ -4,3 +4,4 @@ sqlite.db
 todo_list.json
 logs/
 .venv
+.hypothesis
