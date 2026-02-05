@@ -1,9 +1,14 @@
-build:
+@default:
+    just --choose
+
+@build:
 	docker compose up --build
 
-dev:
-	source /home/aron/main/python/venv/fastapi/bin/activate
-	fastapi dev src/main.py
+@dev:
+	uv run fastapi dev src/main.py
 
-clean_logs:
+@clean_logs:
 	rm -r logs
+
+@reset_db:
+	rm -r data/database
