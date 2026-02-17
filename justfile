@@ -11,4 +11,4 @@
 	rm -r logs
 
 @reset_db:
-	rm -r data/database
+	rm data/database/*
